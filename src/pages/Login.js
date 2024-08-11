@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
-
+import { Link, useNavigate } from "react-router-dom";
 export default function Login() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-
+const navigate =useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -72,6 +71,10 @@ export default function Login() {
                   />
                 </div>
                 <button type="submit" className="btn btn-primary w-100">Login</button>
+                <div className='text-center my-4'>
+                Don't have an account? <Link to={'/register'}>Register</Link>
+                </div>
+               
               </form>
             </div>
           </div>

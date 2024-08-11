@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { Link } from 'react-router-dom';
 export default function Register() {
   const [formData, setFormData] = useState({
     name: '',
@@ -41,11 +41,11 @@ export default function Register() {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 p-5">
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
-            <div className="card-header">
+            <div className="card-header text-center">
               <h2>Register</h2>
             </div>
             <div className="card-body">
@@ -101,8 +101,15 @@ export default function Register() {
                     <option value="student">Student</option>
                   </select>
                 </div>
-                <button type="submit" className="btn btn-primary">Register</button>
+                <div className='text-center w-[75px]'>
+                <button type="submit" className="btn btn-primary ">Register</button>
+                </div>
+               
+
               </form>
+              <div className='text-center my-4'>
+                Already have an account? <Link to={'/login'}>Login</Link>
+                </div>
             </div>
           </div>
         </div>

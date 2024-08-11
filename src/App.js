@@ -7,6 +7,7 @@ import TeacherView from "./pages/TeacherView";
 import StudentsView from "./pages/StudentsView"
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import CreateTimetable from "./pages/CreateTimetable";
 function App() {
   return (
     <div className="App">
@@ -17,6 +18,7 @@ function App() {
            <Route path="/principalView/editUser/:UserId" element={<EditUser />} />
            <Route path="/principalview/createClassRoom" element={<CreateClassRoom />} />
            <Route path="/teacherview" element={<TeacherView />} />
+           <Route path="/teacherview/createtimetable" element={<CreateTimetable />} />
            <Route path="/studentview" element={<StudentsView />} />
            <Route path="/register" element={<Register />} />
            <Route path="/login" element={<Login />} />
