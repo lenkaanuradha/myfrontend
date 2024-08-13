@@ -28,6 +28,7 @@ export default function Login() {
       console.log(response.status);
       if (response.status === 200) {
         localStorage.setItem('token', data.token);
+        localStorage.setItem('role', data.role);
         localStorage.setItem('ID', data.details._id);
         console.log('Login successful');
         if(data.role === 'student'){

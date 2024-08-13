@@ -8,6 +8,7 @@ export default function EditUser() {
   const [credentials, setCredentials] = useState({});
   const navigate=useNavigate();
   const location = useLocation();
+  const role=localStorage.getItem('role');
   const objId = location.pathname.split("/")[3];
   console.log(objId)
   const handleSubmit = async(e) => {
@@ -22,7 +23,7 @@ export default function EditUser() {
         const response = await axios.put(
           `${process.env.REACT_APP_BACKEND_URL}/backend/users/editUsers/${objId}`,credentials
         );
-        console.log(response);
+        console.log(response,"response");
         
       } catch (error) {
         console.error("Error deleting data:", error);
@@ -71,7 +72,9 @@ export default function EditUser() {
         </div>
 
         <button type="submit" className="btn btn-primary">Save Changes</button>
-        <button type="submit" className="btn btn-success  mx-3" onClick={()=>navigate('/teacherview')}>Go back</button>
+        {role === 'principal'? <button  className="btn btn-success  mx-3" onClick={()=>navigate('/principalView')}>Go back</button>:
+         <button  className="btn btn-success  mx-3" onClick={()=>navigate('/teacherview')}>Go back</button>}
+       
       </form>
     </div>
   );
