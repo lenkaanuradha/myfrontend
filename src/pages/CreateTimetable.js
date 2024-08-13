@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-
+import { useNavigate } from 'react-router-dom';
 export default function CreateTimetable() {
   const [formData, setFormData] = useState({
     subject: '',
@@ -42,7 +42,7 @@ export default function CreateTimetable() {
       console.log('An error occurred while creating the timetable');
     }
   };
-
+const navigate = useNavigate();
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
@@ -114,7 +114,9 @@ export default function CreateTimetable() {
                   />
                 </div>
                 <button type="submit" className="btn btn-primary w-100">Create Timetable</button>
+                <button type="" className="btn btn-danger w-100 my-2" onClick={()=>navigate('/teacherview')}>Go Back</button>
               </form>
+            
             </div>
           </div>
         </div>

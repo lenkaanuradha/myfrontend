@@ -28,7 +28,7 @@ export default function Navbar() {
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <Link
-              to="/principalview/createClassRoom"
+              to="/teacherview/createtimetable"
               className="nav-link"
             >
               CreateTimetable
