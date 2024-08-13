@@ -68,7 +68,7 @@ export default function CreateTimetable() {
                 <div className="mb-3">
                   <label htmlFor="startTime" className="form-label">Start Time:</label>
                   <input
-                    type="time"
+                    type="text"
                     id="startTime"
                     name="startTime"
                     value={formData.startTime}
@@ -80,7 +80,7 @@ export default function CreateTimetable() {
                 <div className="mb-3">
                   <label htmlFor="endTime" className="form-label">End Time:</label>
                   <input
-                    type="time"
+                    type="text"
                     id="endTime"
                     name="endTime"
                     value={formData.endTime}

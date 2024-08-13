@@ -34,11 +34,11 @@ export default function TeacherView() {
     console.log("useEffect")
     fetchList();
   }, []);
-
+const teacherId= localStorage.getItem('ID')
   const fetchList = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/backend/classroom/getTeachersView/66b8aa991cffc7dbab6fc8c9`
+        `${process.env.REACT_APP_BACKEND_URL}/backend/classroom/getTeachersView/${teacherId}`
       );
       console.log(response.data);
     

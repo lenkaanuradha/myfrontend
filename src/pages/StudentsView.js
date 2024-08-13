@@ -8,8 +8,7 @@ export default function TeacherView() {
     const navigate = useNavigate();
 
   const [studentObjects, setStudentObjects] = useState([]);
-
- 
+  
 
   
 
@@ -17,15 +16,15 @@ export default function TeacherView() {
     console.log("useEffect")
     fetchList();
   }, []);
-
+const studentId=localStorage.getItem('ID');
   const fetchList = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/backend/classroom/getStudentView/66b8a8269bd8ef5292a02bbe`
+        `${process.env.REACT_APP_BACKEND_URL}/backend/classroom/getStudentView/${studentId}`
       );
-      console.log(response.data);
+     
     
-      setStudentObjects(response.data.studentObj || []);
+      setStudentObjects(response.data.otherstudentsObjs || []);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -48,20 +47,19 @@ export default function TeacherView() {
                 <th scope="col">S.No.</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
+               
               </tr>
             </thead>
             <tbody>
               {studentObjects.map((student, index) => (
-                student.length?
+               
                 (<tr key={index}>
                   <th scope="row">{index + 1}</th>
-                  <td>{student[0].name}</td>
-                  <td>{student[0].email}</td>
+                  <td>{student.name}</td>
+                  <td>{student.email}</td>
+                
                  
-                 
-                </tr>):""
+                </tr>)
               ))}
             </tbody>
           </table>

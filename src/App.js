@@ -21,7 +21,7 @@ function App() {
            <Route path="/teacherview/createtimetable" element={<CreateTimetable />} />
            <Route path="/studentview" element={<StudentsView />} />
            <Route path="/register" element={<Register />} />
-           <Route path="/login" element={<Login />} />
+           <Route path="/" element={<Login />} />
           {/* <Route path="/" element={<Login />} /> */}
         </Routes>
       </BrowserRouter>
