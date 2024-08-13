@@ -13,13 +13,15 @@ export default function EditUser() {
   console.log(objId)
   const handleSubmit = async(e) => {
     e.preventDefault();
-    setCredentials((prevCredentials) => ({
-        ...prevCredentials,
-        name: name,
-       email: email,
-       password: password
-      }));
+    // setCredentials((prevCredentials) => ({
+    //     ...prevCredentials,
+    //     name: name,
+    //    email: email,
+    //    password: password
+    //   }));
+    const credentials={name:name,email:email,password:password};
     try {
+      console.log("cre",credentials);
         const response = await axios.put(
           `${process.env.REACT_APP_BACKEND_URL}/backend/users/editUsers/${objId}`,credentials
         );
