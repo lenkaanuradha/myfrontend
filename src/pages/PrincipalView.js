@@ -6,13 +6,13 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar.js";
 
 export default function PrincipalView() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [teacherObjects, setTeacherObjects] = useState([]);
   const [studentObjects, setStudentObjects] = useState([]);
-
+  const [timetableObj, setTimetableObj] = useState([]);
   const onEdit = async (objId) => {
     try {
-       navigate(`/principalView/editUser/${objId}`);
+      navigate(`/principalView/editUser/${objId}`);
     } catch (error) {
       console.error("Errorediting data:", error);
     }
@@ -42,6 +42,7 @@ export default function PrincipalView() {
       console.log(response.data);
       setTeacherObjects(response.data.teacherObjects || []);
       setStudentObjects(response.data.studentObjects || []);
+      setTimetableObj(response.data.alltimetables || []);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -49,101 +50,127 @@ export default function PrincipalView() {
 
   return (
     <div className="">
-    <Navbar/>
-    <div className="container my-4">
-       
-      <section>
-        <h2 className="mb-4">Teachers</h2>
-        {teacherObjects.length > 0 ? (
-          <table className="table table-bordered table-hover">
-            <thead className="bg-primary text-white">
-              <tr>
-                <th scope="col">S.No.</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {teacherObjects.map((teacher, index) => (
-                <tr key={teacher._id}>
-                  <th scope="row">{index + 1}</th>
-                  <td>{teacher.name}</td>
-                  <td>{teacher.email}</td>
-                  <td>
-                    <button
-                      className="btn btn-warning btn-sm"
-                      onClick={() => onEdit(teacher._id)}
-                      aria-label="Edit"
-                    >
-                      <FaEdit />
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      className="btn btn-danger btn-sm"
-                      onClick={() => onDelete(teacher._id)}
-                      aria-label="Delete"
-                    >
-                      <MdAutoDelete />
-                    </button>
-                  </td>
+      <Navbar />
+      <div className="container my-4">
+        <section>
+          <h2 className="mb-4">Teachers</h2>
+          {teacherObjects.length > 0 ? (
+            <table className="table table-bordered table-hover">
+              <thead className="bg-primary text-white">
+                <tr>
+                  <th scope="col">S.No.</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Edit</th>
+                  <th scope="col">Delete</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <p>No teachers available.</p>
-        )}
-      </section>
+              </thead>
+              <tbody>
+                {teacherObjects.map((teacher, index) => (
+                  <tr key={teacher._id}>
+                    <th scope="row">{index + 1}</th>
+                    <td>{teacher.name}</td>
+                    <td>{teacher.email}</td>
+                    <td>
+                      <button
+                        className="btn btn-warning btn-sm"
+                        onClick={() => onEdit(teacher._id)}
+                        aria-label="Edit"
+                      >
+                        <FaEdit />
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => onDelete(teacher._id)}
+                        aria-label="Delete"
+                      >
+                        <MdAutoDelete />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p>No teachers available.</p>
+          )}
+        </section>
 
-      <section className="mt-5">
-        <h2 className="mb-4">Students</h2>
-        {studentObjects.length > 0 ? (
-          <table className="table table-bordered table-hover">
-            <thead className="bg-primary text-white">
-              <tr>
-                <th scope="col">S.No.</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {studentObjects.map((student, index) => (
-                <tr key={student._id}>
-                  <th scope="row">{index + 1}</th>
-                  <td>{student.name}</td>
-                  <td>{student.email}</td>
-                  <td>
-                    <button
-                      className="btn btn-warning btn-sm"
-                      onClick={() => onEdit(student._id)}
-                      aria-label="Edit"
-                    >
-                      <FaEdit />
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      className="btn btn-danger btn-sm"
-                      onClick={() => onDelete(student._id)}
-                      aria-label="Delete"
-                    >
-                      <MdAutoDelete />
-                    </button>
-                  </td>
+        <section className="mt-5">
+          <h2 className="mb-4">Students</h2>
+          {studentObjects.length > 0 ? (
+            <table className="table table-bordered table-hover">
+              <thead className="bg-primary text-white">
+                <tr>
+                  <th scope="col">S.No.</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Edit</th>
+                  <th scope="col">Delete</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <p>No students available.</p>
-        )}
-      </section>
-    </div>
+              </thead>
+              <tbody>
+                {studentObjects.map((student, index) => (
+                  <tr key={student._id}>
+                    <th scope="row">{index + 1}</th>
+                    <td>{student.name}</td>
+                    <td>{student.email}</td>
+                    <td>
+                      <button
+                        className="btn btn-warning btn-sm"
+                        onClick={() => onEdit(student._id)}
+                        aria-label="Edit"
+                      >
+                        <FaEdit />
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => onDelete(student._id)}
+                        aria-label="Delete"
+                      >
+                        <MdAutoDelete />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p>No students available.</p>
+          )}
+        </section>
+        <h3>Timetables:</h3>
+{timetableObj.length > 0 ? (
+  <table className="table table-bordered table-hover mt-4">
+    <thead className="bg-primary text-white">
+      <tr>
+        <th scope="col">Day</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Start Time</th>
+        <th scope="col">End Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {timetableObj.map((timetable, index) => (
+        <tr key={index}>
+          <td>{timetable.day}</td>
+          <td>{timetable.subject}</td>
+          <td>{timetable.startTime}</td>
+          <td>{timetable.endTime}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+) : (
+  <p>No timetables available.</p>
+)}
+
+      </div>
+     
     </div>
   );
 }
